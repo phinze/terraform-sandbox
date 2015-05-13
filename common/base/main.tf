@@ -1,9 +1,9 @@
-module "ami" {
-  source        = "github.com/terraform-community-modules/tf_aws_ubuntu_ami/ebs"
-  region        = "us-west-2"
-  distribution  = "trusty"
-  instance_type = "${var.instance_type}"
-}
+/* module "ami" { */
+/*   source        = "github.com/terraform-community-modules/tf_aws_ubuntu_ami/ebs" */
+/*   region        = "us-west-2" */
+/*   distribution  = "trusty" */
+/*   instance_type = "${var.instance_type}" */
+/* } */
 
 module "vpc" {
   source   = "../vpc"
@@ -18,58 +18,58 @@ module "vpc" {
   azs      = "us-west-2a,us-west-2b,us-west-2c"
 }
 
-resource "aws_security_group" "external" {
-  vpc_id = "${module.vpc.vpc_id}"
+/* resource "aws_security_group" "external" { */
+/*   vpc_id = "${module.vpc.vpc_id}" */
+/*  */
+/*   ingress { */
+/*     from_port = 22 */
+/*     to_port   = 22 */
+/*     protocol  = "tcp" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/*   egress { */
+/*     from_port = 0 */
+/*     to_port   = 0 */
+/*     protocol  = "-1" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/*   lifecycle { create_before_destroy = true } */
+/* } */
+/*  */
+/* resource "aws_security_group" "lb" { */
+/*   vpc_id = "${module.vpc.vpc_id}" */
+/*  */
+/*   ingress { */
+/*     from_port = 80 */
+/*     to_port   = 80 */
+/*     protocol  = "tcp" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/*   egress { */
+/*     from_port = 0 */
+/*     to_port   = 0 */
+/*     protocol  = "-1" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/* } */
+/*  */
+/* resource "aws_security_group" "ssh" { */
+/*   vpc_id = "${module.vpc.vpc_id}" */
+/*  */
+/*   ingress { */
+/*     from_port = 22 */
+/*     to_port   = 22 */
+/*     protocol  = "tcp" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/*   egress { */
+/*     from_port = 0 */
+/*     to_port   = 0 */
+/*     protocol  = "-1" */
+/*     cidr_blocks = ["0.0.0.0/0"] */
+/*   } */
+/* } */
 
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  lifecycle { create_before_destroy = true }
-}
-
-resource "aws_security_group" "lb" {
-  vpc_id = "${module.vpc.vpc_id}"
-
-  ingress {
-    from_port = 80
-    to_port   = 80
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_security_group" "ssh" {
-  vpc_id = "${module.vpc.vpc_id}"
-
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_key_pair" "ssh" {
-  public_key = "${var.ssh_public_key}"
-}
+/* resource "aws_key_pair" "ssh" { */
+/*   public_key = "${var.ssh_public_key}" */
+/* } */
