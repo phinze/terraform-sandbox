@@ -52,6 +52,7 @@ resource "aws_subnet" "private" {
  ****** vv BUG vv
  ****** Terraform v0.5.1-dev (bb3ed8d74038966beff567d1c690266744bf0316)
  ****** Hangs with this line, cycles without this line:
+ ******/
   lifecycle { create_before_destroy = true }
 /******
  ****** ^^ BUG ^^
