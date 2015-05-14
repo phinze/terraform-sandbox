@@ -4,9 +4,6 @@ variable "asg_size" {
 variable "instance_type" {
   default = "t2.micro"
 }
-variable "key_name" {
-  default = "tftest"
-}
 
 module "base" {
   source = "../common/base"
@@ -76,7 +73,7 @@ resource "aws_autoscaling_group" "prod" {
   max_size          = "${var.asg_size}"
   min_size          = "${var.asg_size}"
   health_check_type = "ELB"
-  health_check_grace_period = 60
+  health_check_grace_period = 0
 
   lifecycle {
     create_before_destroy = true

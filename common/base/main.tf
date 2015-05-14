@@ -1,7 +1,7 @@
 module "ami" {
   source        = "github.com/terraform-community-modules/tf_aws_ubuntu_ami/ebs"
   region        = "us-west-2"
-  distribution  = "trusty"
+  distribution  = "precise"
   instance_type = "${var.instance_type}"
 }
 
