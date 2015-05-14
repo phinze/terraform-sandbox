@@ -51,6 +51,7 @@ resource "aws_security_group" "lb" {
     protocol  = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  lifecycle { create_before_destroy = true }
 }
 
 resource "aws_security_group" "ssh" {
@@ -68,8 +69,10 @@ resource "aws_security_group" "ssh" {
     protocol  = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  lifecycle { create_before_destroy = true }
 }
 
 resource "aws_key_pair" "ssh" {
   public_key = "${var.ssh_public_key}"
+  lifecycle { create_before_destroy = true }
 }

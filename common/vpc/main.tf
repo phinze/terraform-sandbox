@@ -31,6 +31,7 @@ resource "aws_security_group" "internal" {
     protocol  = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  lifecycle { create_before_destroy = true }
 }
 
 resource "aws_route_table" "private" {
@@ -48,15 +49,7 @@ resource "aws_subnet" "private" {
   availability_zone = "${element(split(",", var.azs), count.index)}"
   count = "${length(split(",", var.private_subnets))}"
   tags { Name = "${var.name}-private" }
-/******
- ****** vv BUG vv
- ****** Terraform v0.5.1-dev (bb3ed8d74038966beff567d1c690266744bf0316)
- ****** Hangs with this line, cycles without this line:
- ******/
   lifecycle { create_before_destroy = true }
-/******
- ****** ^^ BUG ^^
- ******/
 }
 
 resource "aws_subnet" "public" {
